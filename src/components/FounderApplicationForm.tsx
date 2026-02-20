@@ -285,8 +285,8 @@ const FounderApplicationForm = ({
                 return (
                   <div key={idx} className="flex flex-col items-center gap-2">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors duration-300 ${active ? "border-primary bg-card shadow-lg shadow-primary/20" :
-                        completed ? "border-primary gradient-bg text-primary-foreground" :
-                          "border-muted bg-card text-muted-foreground"
+                      completed ? "border-primary gradient-bg text-primary-foreground" :
+                        "border-muted bg-card text-muted-foreground"
                       }`}>
                       {completed ? <CheckCircle2 className="h-5 w-5" /> : <step.icon className={`h-4 w-4 ${active ? "text-primary" : ""}`} />}
                     </div>
@@ -313,37 +313,8 @@ const FounderApplicationForm = ({
                   className="space-y-6"
                 >
                   <div className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div className="space-y-2">
-                        <Label htmlFor="founder_name">Full Name *</Label>
-                        <Input id="founder_name" value={form.founder_name} onChange={(e) => update("founder_name", e.target.value)} placeholder="e.g. Tariq Al-Faisal" autoFocus className="h-11 border-border/60" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email Address *</Label>
-                        <Input id="email" type="email" value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="tariq@startup.sa" className="h-11 border-border/60" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <Input id="phone" value={form.phone} onChange={(e) => update("phone", e.target.value)} placeholder="+966 5..." className="h-11 border-border/60" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="linkedin_url">LinkedIn Profile</Label>
-                        <Input id="linkedin_url" value={form.linkedin_url} onChange={(e) => update("linkedin_url", e.target.value)} placeholder="linkedin.com/in/..." className="h-11 border-border/60" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="country">Country of Residence *</Label>
-                        <Input id="country" value={form.country} onChange={(e) => update("country", e.target.value)} placeholder="Saudi Arabia" className="h-11 border-border/60" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="city">City</Label>
-                        <Input id="city" value={form.city} onChange={(e) => update("city", e.target.value)} placeholder="e.g. Riyadh" className="h-11 border-border/60" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-6 mt-6 border-t border-border/50">
-                    <div className="space-y-4">
-                      <Label htmlFor="num_cofounders" className="text-base font-semibold">Do you have co-founders?</Label>
+                    <div className="space-y-2 mb-6">
+                      <Label htmlFor="num_cofounders" className="text-base font-semibold">How many founders are there?</Label>
                       <p className="text-sm text-muted-foreground mb-4">Select the total number of founders, including yourself.</p>
                       <Select value={form.num_cofounders} onValueChange={handleCofounderCountChange}>
                         <SelectTrigger id="num_cofounders" className="h-11 w-full sm:w-[200px]"><SelectValue placeholder="Total Founders" /></SelectTrigger>
@@ -353,27 +324,59 @@ const FounderApplicationForm = ({
                           ))}
                         </SelectContent>
                       </Select>
+                    </div>
 
-                      {cofounders.length > 0 && (
-                        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="space-y-4 mt-6">
-                          {cofounders.map((cofounder, i) => (
-                            <div key={i} className="p-4 rounded-xl border border-border/50 bg-muted/10 space-y-4 relative">
-                              <p className="text-sm font-semibold uppercase tracking-wider text-primary">Co-founder {i + 2}</p>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div className="space-y-2">
-                                  <Label>Name</Label>
-                                  <Input value={cofounder.name} onChange={(e) => updateCofounder(i, "name", e.target.value)} placeholder="Full Name" className="h-10" />
-                                </div>
-                                <div className="space-y-2">
-                                  <Label>Age / Education</Label>
-                                  <Input value={cofounder.education} onChange={(e) => updateCofounder(i, "education", e.target.value)} placeholder="e.g. 28, KAUST Alumni" className="h-10" />
-                                </div>
+                    <div className="pt-6 border-t border-border/50">
+                      <h4 className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">
+                        {parseInt(form.num_cofounders) > 1 ? "Co-founder 1 (You)" : "The Founder"}
+                      </h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div className="space-y-2">
+                          <Label htmlFor="founder_name">Full Name *</Label>
+                          <Input id="founder_name" value={form.founder_name} onChange={(e) => update("founder_name", e.target.value)} placeholder="e.g. Tariq Al-Faisal" autoFocus className="h-11 border-border/60" />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="email">Email Address *</Label>
+                          <Input id="email" type="email" value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="tariq@startup.sa" className="h-11 border-border/60" />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="phone">Phone Number</Label>
+                          <Input id="phone" value={form.phone} onChange={(e) => update("phone", e.target.value)} placeholder="+966 5..." className="h-11 border-border/60" />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="linkedin_url">LinkedIn Profile</Label>
+                          <Input id="linkedin_url" value={form.linkedin_url} onChange={(e) => update("linkedin_url", e.target.value)} placeholder="linkedin.com/in/..." className="h-11 border-border/60" />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="country">Country of Residence *</Label>
+                          <Input id="country" value={form.country} onChange={(e) => update("country", e.target.value)} placeholder="Saudi Arabia" className="h-11 border-border/60" />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="city">City</Label>
+                          <Input id="city" value={form.city} onChange={(e) => update("city", e.target.value)} placeholder="e.g. Riyadh" className="h-11 border-border/60" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {cofounders.length > 0 && (
+                      <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="space-y-6 pt-4">
+                        {cofounders.map((cofounder, i) => (
+                          <div key={i} className="pt-6 border-t border-border/50 relative">
+                            <h4 className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">Co-founder {i + 2}</h4>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                              <div className="space-y-2">
+                                <Label>Full Name</Label>
+                                <Input value={cofounder.name} onChange={(e) => updateCofounder(i, "name", e.target.value)} placeholder="e.g. Sara Al-Saud" className="h-11 border-border/60" />
+                              </div>
+                              <div className="space-y-2">
+                                <Label>Age & Education</Label>
+                                <Input value={cofounder.education} onChange={(e) => updateCofounder(i, "education", e.target.value)} placeholder="e.g. 28, KAUST Alumni" className="h-11 border-border/60" />
                               </div>
                             </div>
-                          ))}
-                        </motion.div>
-                      )}
-                    </div>
+                          </div>
+                        ))}
+                      </motion.div>
+                    )}
                   </div>
                 </motion.div>
               )}
@@ -549,8 +552,8 @@ const FounderApplicationForm = ({
                               type="button"
                               onClick={() => update("feature_type", opt.value)}
                               className={`p-4 rounded-xl text-left border transition-all ${form.feature_type === opt.value
-                                  ? "border-primary bg-primary/5 shadow-md shadow-primary/10"
-                                  : "border-border/60 bg-card hover:border-primary/30"
+                                ? "border-primary bg-primary/5 shadow-md shadow-primary/10"
+                                : "border-border/60 bg-card hover:border-primary/30"
                                 }`}
                             >
                               <p className={`font-medium mb-1 ${form.feature_type === opt.value ? "text-primary" : "text-foreground"}`}>{opt.label}</p>
