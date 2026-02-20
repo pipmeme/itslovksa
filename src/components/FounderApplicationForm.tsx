@@ -230,7 +230,7 @@ const FounderApplicationForm = ({
     return (
       <Dialog open={open} onOpenChange={handleClose}>
         <DialogContent className="sm:max-w-md bg-card/95 backdrop-blur-xl border-border/50">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className="text-center py-10"
@@ -270,10 +270,10 @@ const FounderApplicationForm = ({
             {/* Stepper */}
             <div className="flex justify-between items-center relative z-10">
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-muted -z-10 rounded-full overflow-hidden">
-                <motion.div 
+                <motion.div
                   className="h-full gradient-bg"
                   initial={{ width: "0%" }}
-                  animate={{ width: \`\${((currentStep - 1) / (totalSteps - 1)) * 100}%\` }}
+                  animate={{ width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%` }}
                   transition={{ duration: 0.3 }}
                 />
               </div>
@@ -281,17 +281,16 @@ const FounderApplicationForm = ({
                 const stepNum = idx + 1;
                 const active = currentStep === stepNum;
                 const completed = currentStep > stepNum;
-                
+
                 return (
                   <div key={idx} className="flex flex-col items-center gap-2">
-                    <div className={\`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors duration-300 \${
-                      active ? "border-primary bg-card shadow-lg shadow-primary/20" : 
-                      completed ? "border-primary gradient-bg text-primary-foreground" : 
-                      "border-muted bg-card text-muted-foreground"
-                    }\`}>
-                      {completed ? <CheckCircle2 className="h-5 w-5" /> : <step.icon className={\`h-4 w-4 \${active ? "text-primary" : ""}\`} />}
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors duration-300 ${active ? "border-primary bg-card shadow-lg shadow-primary/20" :
+                        completed ? "border-primary gradient-bg text-primary-foreground" :
+                          "border-muted bg-card text-muted-foreground"
+                      }`}>
+                      {completed ? <CheckCircle2 className="h-5 w-5" /> : <step.icon className={`h-4 w-4 ${active ? "text-primary" : ""}`} />}
                     </div>
-                    <span className={\`text-xs font-medium hidden sm:block \${active ? "text-foreground" : "text-muted-foreground"}\`}>
+                    <span className={`text-xs font-medium hidden sm:block ${active ? "text-foreground" : "text-muted-foreground"}`}>
                       {step.label}
                     </span>
                   </div>
@@ -350,11 +349,11 @@ const FounderApplicationForm = ({
                         <SelectTrigger id="num_cofounders" className="h-11 w-full sm:w-[200px]"><SelectValue placeholder="Total Founders" /></SelectTrigger>
                         <SelectContent>
                           {["1", "2", "3", "4", "5"].map((n) => (
-                            <SelectItem key={n} value={n}>{n === "1" ? "Just me (1)" : \`\${n} Founders\`}</SelectItem>
+                            <SelectItem key={n} value={n}>{n === "1" ? "Just me (1)" : `${n} Founders`}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
-                      
+
                       {cofounders.length > 0 && (
                         <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="space-y-4 mt-6">
                           {cofounders.map((cofounder, i) => (
@@ -431,14 +430,14 @@ const FounderApplicationForm = ({
                     <div className="space-y-2 pt-2">
                       <Label htmlFor="one_liner">Company One-liner *</Label>
                       <p className="text-xs text-muted-foreground mb-2">Describe what your company does in 50 words or less. Make it punchy.</p>
-                      <Textarea 
-                        id="one_liner" 
-                        value={form.one_liner} 
-                        onChange={(e) => update("one_liner", e.target.value)} 
-                        placeholder="We are building X for Y to solve Z..." 
-                        rows={3} 
+                      <Textarea
+                        id="one_liner"
+                        value={form.one_liner}
+                        onChange={(e) => update("one_liner", e.target.value)}
+                        placeholder="We are building X for Y to solve Z..."
+                        rows={3}
                         className="resize-none"
-                        required 
+                        required
                       />
                     </div>
                   </div>
@@ -480,12 +479,12 @@ const FounderApplicationForm = ({
                         </div>
                         <Switch checked={isIncubated} onCheckedChange={setIsIncubated} id="is_incubated" className="data-[state=checked]:bg-primary" />
                       </div>
-                      
+
                       <AnimatePresence>
                         {isIncubated && (
-                          <motion.div 
-                            initial={{ opacity: 0, height: 0 }} 
-                            animate={{ opacity: 1, height: "auto" }} 
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
                             className="space-y-2 pt-2 border-t border-border/30"
                           >
@@ -549,13 +548,12 @@ const FounderApplicationForm = ({
                               key={opt.value}
                               type="button"
                               onClick={() => update("feature_type", opt.value)}
-                              className={\`p-4 rounded-xl text-left border transition-all \${
-                                form.feature_type === opt.value
+                              className={`p-4 rounded-xl text-left border transition-all ${form.feature_type === opt.value
                                   ? "border-primary bg-primary/5 shadow-md shadow-primary/10"
                                   : "border-border/60 bg-card hover:border-primary/30"
-                              }\`}
+                                }`}
                             >
-                              <p className={\`font-medium mb-1 \${form.feature_type === opt.value ? "text-primary" : "text-foreground"}\`}>{opt.label}</p>
+                              <p className={`font-medium mb-1 ${form.feature_type === opt.value ? "text-primary" : "text-foreground"}`}>{opt.label}</p>
                               <p className="text-[0.65rem] sm:text-xs text-muted-foreground leading-relaxed">{opt.desc}</p>
                             </button>
                           ))}
@@ -567,14 +565,14 @@ const FounderApplicationForm = ({
                         <p className="text-xs text-muted-foreground mb-2">
                           What specific problem are you solving for Saudi Arabia or the world? What was the "aha!" moment that sparked this idea? Be authentic, show your passion.
                         </p>
-                        <Textarea 
-                          id="message" 
-                          value={form.message} 
-                          onChange={(e) => update("message", e.target.value)} 
-                          placeholder="I realized the current ecosystem was lacking..." 
-                          rows={6} 
+                        <Textarea
+                          id="message"
+                          value={form.message}
+                          onChange={(e) => update("message", e.target.value)}
+                          placeholder="I realized the current ecosystem was lacking..."
+                          rows={6}
                           className="resize-none"
-                          required 
+                          required
                           autoFocus
                         />
                       </div>
@@ -591,7 +589,7 @@ const FounderApplicationForm = ({
               type="button"
               variant="outline"
               onClick={prevStep}
-              className={\`px-6 h-11 \${currentStep === 1 ? 'invisible' : ''}\`}
+              className={`px-6 h-11 ${currentStep === 1 ? 'invisible' : ''}`}
             >
               <ChevronLeft className="h-4 w-4 mr-1" /> Back
             </Button>
@@ -601,9 +599,9 @@ const FounderApplicationForm = ({
                 Next <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
             ) : (
-              <Button 
-                type="button" 
-                onClick={handleSubmit} 
+              <Button
+                type="button"
+                onClick={handleSubmit}
                 className="px-8 h-11 gradient-bg border-0 text-primary-foreground shadow-lg shadow-primary/20"
                 disabled={submitting}
               >
