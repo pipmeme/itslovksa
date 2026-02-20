@@ -341,14 +341,14 @@ const Index = () => {
                 Your Story Could Be Next
               </h2>
               <p className="text-primary-foreground/80 text-sm sm:text-lg max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-                We're documenting the next generation of founders building in Saudi Arabia. Want to be featured?
+                We are actively curating the next generation of founders building in Saudi Arabia. Tell us what you're building and why it matters.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button asChild size="lg" variant="outline" className="bg-white text-foreground hover:bg-white/90 border-0 text-sm sm:text-base px-8 h-12 shadow-xl">
-                  <Link to="/stories">Explore Stories <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                <Button asChild size="lg" variant="outline" className="bg-white text-foreground hover:bg-white/90 border-0 text-sm sm:text-base px-8 h-12 shadow-xl cursor-pointer">
+                  <a href="/rising-founders">Apply to get Featured <ArrowRight className="ml-2 h-4 w-4" /></a>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="bg-transparent text-primary-foreground border-primary-foreground/30 hover:bg-white/10 text-sm sm:text-base px-8 h-12">
-                  <Link to="/about">Get in Touch</Link>
+                <Button asChild size="lg" variant="outline" className="bg-transparent text-primary-foreground border-primary-foreground/30 hover:bg-white/10 text-sm sm:text-base px-8 h-12 cursor-pointer">
+                  <Link to="/about">Learn More</Link>
                 </Button>
               </div>
             </div>
